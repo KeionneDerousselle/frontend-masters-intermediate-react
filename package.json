@@ -5,17 +5,21 @@
   "license": "MIT",
   "author": "Keionne Derousselle",
   "scripts": {
+    "clear-build-cache": "rm -rf .cache/ dist/",
     "format": "prettier \"src/**/*.{js,html}\" --write",
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
     "dev": "parcel src/index.html",
     "dev:mock": "cross-env PET_MOCK=mock yarn run dev"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.3",
+    "@babel/core": "^7.0.0",
     "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.5",
+    "@emotion/babel-plugin": "^11.0.0",
+    "@emotion/babel-preset-css-prop": "^11.0.0",
     "babel-eslint": "^10.1.0",
+    "babel-plugin-transform-inline-environment-variables": "^0.4.3",
     "cross-env": "^7.0.2",
     "eslint": "^7.13.0",
     "eslint-config-prettier": "^6.15.0",
@@ -27,9 +31,10 @@
     "prettier": "^2.1.2"
   },
   "dependencies": {
+    "@emotion/react": "^11.1.1",
     "@frontendmasters/pet": "^1.0.3",
     "@reach/router": "^1.3.4",
-    "react": "15.x || 16.x || 16.4.0-alpha.0911da3",
+    "react": ">=16.8.0",
     "react-dom": "15.x || 16.x || 16.4.0-alpha.0911da3"
   },
   "browserslist": [
