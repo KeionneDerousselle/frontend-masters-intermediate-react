@@ -8,7 +8,8 @@
     "format": "prettier \"src/**/*.{js,html}\" --write",
     "lint": "tslint --project",
     "dev": "parcel src/index.html",
-    "dev:mock": "cross-env PET_MOCK=mock yarn run dev"
+    "dev:mock": "cross-env PET_MOCK=mock yarn run dev",
+    "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
