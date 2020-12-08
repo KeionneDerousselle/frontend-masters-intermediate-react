@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import petClient from '@frontendmasters/pet'
 import { navigate } from '@reach/router'
+import { connect } from 'react-redux'
+import petClient from '@frontendmasters/pet'
 import Modal from './Modal'
 import Carousel from './Carousel'
 import ErrorBoundary from './ErrorBoundary'
-import ThemeContext from './ThemeContext'
 
 class Details extends Component {
   state = {
@@ -54,6 +54,8 @@ class Details extends Component {
 
   render() {
     const { animal, breed, description, name, location, media, loading, showModal } = this.state
+    const { theme } = this.props
+
     return loading ? (
       <h1>Loading...</h1>
     ) : (
@@ -62,15 +64,11 @@ class Details extends Component {
         <div>
           <h1>{name}</h1>
           <h2>{`${animal} - ${breed} - ${location}`}</h2>
-          <ThemeContext.Consumer>
-            {([theme]) => (
-                <button
-                  style={{ backgroundColor: theme }}
-                  onClick={this.toggleModal}>
-                  Adopt {name}
-                </button>
-            )}
-          </ThemeContext.Consumer>
+          <button
+            style={{ backgroundColor: theme }}
+            onClick={this.toggleModal}>
+            Adopt {name}
+          </button>
             <p>{description}</p>
             { showModal ? (
               <Modal>
@@ -93,10 +91,14 @@ class Details extends Component {
   }
 }
 
+const mapStateToProps = ({ theme }) => ({ theme })
+
+const WrappedDetails = connect(mapStateToProps)(Details)
+
 export default function DetailsWithErrorBoundary(props) {
   return (
     <ErrorBoundary>
-      <Details {...props}/>
+      <WrappedDetails {...props}/>
     </ErrorBoundary>
   )
 }
