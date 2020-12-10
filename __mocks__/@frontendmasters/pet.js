@@ -23,33 +23,21 @@ export const _dogs = doggos.animals
 
 const mock = {
   breeds: jest.fn(() => ({
-    then: async callback => {
-      act(() => { callback(doggos) })
+    then: callback => {
+      act(() => { callback({ breeds }) })
       return {
         catch: callback => act(() => { callback() })
       }
     }
   })),
 
-
-  // breeds: jest.fn(() => new Promise((res, rej) => {
-  //   try {
-  //     act(() => res({ breeds }))
-  //   } catch (error) {
-  //     console.error(error)
-  //     rej(error)
-  //   }
-  // })),
-
-
   animals: jest.fn(() => ({
-    then: callback => act(() => {
-      callback(doggos)
-
-      // return {
-      //   catch: callback => act(() => { callback() })
-      // }
-    }),
+    then: callback => {
+      act(() => { callback(doggos) })
+      return {
+        catch: callback => act(() => { callback() })
+      }
+     }
   }))
 }
 
