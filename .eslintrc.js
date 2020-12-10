@@ -19,7 +19,8 @@ module.exports = {
   env: {
     es2021: true,
     browser: true,
-    node: true
+    node: true,
+    jest: true
   },
   rules: {
     'react/prop-types': 0,
