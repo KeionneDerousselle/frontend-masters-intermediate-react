@@ -12,18 +12,14 @@ const SearchParams = () => {
   const [pets, setPets] = useState([])
   const [theme, setTheme] = useContext(ThemeContext)
 
-  const requestPets = async () => {
-    try {
-      const { animals } = await petClient.animals({
-        location,
-        breed,
-        type: animal
-      })
-  
+  const requestPets = () => {
+    petClient.animals({
+      location,
+      breed,
+      type: animal
+    }).then(({ animals }) => {
       setPets(animals || [])
-    } catch (e) {
-      console.error(e)
-    }
+    })
   }
 
   useEffect(() => {

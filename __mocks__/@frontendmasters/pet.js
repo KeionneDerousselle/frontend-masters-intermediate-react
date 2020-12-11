@@ -26,7 +26,7 @@ const mock = {
     then: callback => {
       act(() => { callback({ breeds }) })
       return {
-        catch: callback => act(() => { callback() })
+        catch: callback => () => { callback() }
       }
     }
   })),
@@ -35,7 +35,7 @@ const mock = {
     then: callback => {
       act(() => { callback(doggos) })
       return {
-        catch: callback => act(() => { callback() })
+        catch: callback => () => { callback() }
       }
      }
   }))
